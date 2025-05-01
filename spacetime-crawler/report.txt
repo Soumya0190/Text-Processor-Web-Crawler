@@ -1,0 +1,130 @@
+CS121 Assignment 2 Report
+
+Vaanya Gupta(vaanyag) - 92052177
+Soumya Sharma(soumyas1) - 16463723 
+Srilakshmi Godavarti(godavart) - 82584732
+Jae Kim(jaehk11) - 59572523
+
+Why did we use tokens instead of words?
+--- Tokens increase efficiency of indexing
+---- Tokens are units of meaning
+---- Tokens are used in parsing
+
+Tokens should be greater than or equal to 2 
+---- Because token is sequence of characters
+--- 2 characters constitute a sequence
+
+We didn’t count only digits
+---- Because tokens are alphanumeric
+---- And word tokens cannot only have digits
+
+Valuable Pages 
+For our scraper, we are determining the value of a page by the length of text it contains. We believe text is the most valuable aspect of a page, so valuable pages for us are those pages with a high percentage of text. For SEO, Forbes indicates that an average of 600-700 words are optimal per page. Forbes also states that websites with less than 300 words per page are considered “thin” and most likely will not rank highly in search. Similarly, many other Google search results also recommended a minimum of 300 words per page. Thus, we have decided that valuable pages, for us, will have at least 300 words. 
+In addition, we also calculated the percentage of stop words in a text. According to ResearchGate, a platform used by researchers and scientists to share their findings, “stop words [are] the most commonly used words in a particular language. For most URLs we found 20% to 30% of text were stop words in the text content.” Since the average of stop words in a page is around 20-30%, we figured it will be common to come across pages with anywhere from 15-35% of the text being stop words. So for our crawler we said if a page contains text, where more than 35% of the content is stop words, then it is a low value page.
+Functionalities of our crawler
+We check to see that the domains that our crawler is crawling are all from the valid domains specified in the assignment. In order to adhere to the politeness rule, we made sure to parse through the robot.txt to get the pages our crawler was allowed to get information from. The rest of our functionalities are commented in detail in our scraper.py file. 
+
+1) How many unique pages did you find? Uniqueness for the purposes of this assignment is ONLY established by the URL, but discarding the fragment part. So, for example, http://www.ics.uci.edu#aaa and http://www.ics.uci.edu#bbb are the same URL. Even if you implement additional methods for textual similarity detection, please keep considering the above definition of unique pages for the purposes of counting the unique pages in this assignment.
+We found 2105 unique pages.
+
+2) What is the longest page in terms of number of words? (HTML markup doesn’t count as words)
+The longest page for us was https://www.ics.uci.edu/~ihler/papers/abs.html with 16,218 words. We defined words as alphanumeric tokens with length greater than or equal to two. 
+
+3) What are the 50 most common words in the entire set of pages? (Ignore English stop words, which can be found, for example, here. Submit the list of common words ordered by frequency.
+In finding the most common words, we decided to only count the words that:
+i) are independent of capitalization, to avoid having a single word recorded as multiple words in our dictionary. For example, we consider “Crawl” and “crawl” as equal words, because they deliver the same meaning despite having different capitalizations.
+ii) Have a sequence of two or more English alphanumeric characters, because single characters typically do not store meaningful value in a page. As such characters are rather common, we disregarded them in our 50 most common words in order to present valuable and unique words that appear the most in the entire set of pages.
+
+Below are the 50 most common words  in the entire set of pages that we crawled on.
+research => 16516
+computer => 11161
+student => 11094
+software => 9945
+informatics => 8394
+engineering => 8298
+information => 7640
+undergraduate => 7529
+graduate => 7355
+science => 7285
+department => 6482
+students => 6378
+uci => 5770
+news => 5123
+policies => 5089
+january => 4947
+profiles => 4909
+support => 4762
+december => 4671
+courses => 4646
+may => 4603
+data => 4599
+projects => 4542
+june => 4505
+november => 4417
+september => 4363
+july => 4357
+august => 4262
+course => 4239
+books => 4152
+october => 4078
+faculty => 4057
+read => 3984
+process => 3943
+april => 3917
+march => 3893
+design => 3845
+degrees => 3831
+application => 3798
+february => 3749
+people => 3699
+upcoming => 3694
+ics => 3678
+alumni => 3669
+university => 3555
+master => 3461
+groups => 3370
+schedule => 3348
+contact => 3338
+school => 3269
+
+4) How many subdomains did you find in the ics.uci.edu domain? Submit the list of subdomains ordered alphabetically and the number of unique pages detected in each subdomain. The content of this list should be lines containing URL, number, for example:
+http://vision.ics.uci.edu, 10 (not the actual number here)
+
+Number of subdomains in ics.uci.edu domain: 33
+
+aiclub.ics.uci.edu, 1
+asterix.ics.uci.edu, 6
+calendar.ics.uci.edu, 4
+cert.ics.uci.edu, 1
+chenli.ics.uci.edu, 6
+cml.ics.uci.edu, 25
+computableplant.ics.uci.edu, 3
+dynamo.ics.uci.edu, 1
+emj.ics.uci.edu, 12
+evoke.ics.uci.edu, 36
+flamingo.ics.uci.edu, 10
+fr.ics.uci.edu, 1
+futurehealth.ics.uci.edu, 5
+graphmod.ics.uci.edu, 1
+informatics.ics.uci.edu, 1
+ipubmed.ics.uci.edu, 1
+isg.ics.uci.edu, 59
+mcs.ics.uci.edu, 24
+mhcid.ics.uci.edu, 6
+mse.ics.uci.edu, 2
+mswe.ics.uci.edu, 9
+ngs.ics.uci.edu, 371
+perennialpolycultures.ics.uci.edu, 1
+plrg.ics.uci.edu, 5
+riscit.ics.uci.edu, 1
+sdcl.ics.uci.edu, 49
+sli.ics.uci.edu, 3
+sprout.ics.uci.edu, 1
+statconsulting.ics.uci.edu, 1
+tastier.ics.uci.edu, 1
+vision.ics.uci.edu, 1
+wics.ics.uci.edu, 82
+www-db.ics.uci.edu, 4
+
+
+
